@@ -4,7 +4,7 @@ use std::io;
 use std::io::Write;
 
 fn main() {
-    let mut attempts: u32 = 0;
+    let mut attempts: u32 = 1;
     let secret_number = rand::rng().random_range(1..=100);
     loop {
         let guess = get_user_num();
