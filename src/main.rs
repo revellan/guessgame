@@ -8,7 +8,9 @@ fn main() {
     let secret_number = rand::rng().random_range(1..=100);
     loop {
         if attempts >= 255 {
-            println!("\n\nYou lost!\nYou could have just guessed everything from 0..100 and it would have taken you less attempts ;)");
+            println!(
+                "\n\nYou lost!\nYou could have just guessed everything from 0..100 and it would have taken you less attempts ;)"
+            );
             break;
         }
         let mut guess: i8;
