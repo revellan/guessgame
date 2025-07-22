@@ -13,7 +13,7 @@ fn main() {
             );
             break;
         }
-        let mut guess: i8;
+        let guess: i8;
         loop {
             let guess_str = get_user_num();
             match guess_str.trim().parse() {
@@ -26,10 +26,10 @@ fn main() {
                 _ => continue,
             }
         }
-        match compare(&mut guess, &secret_number) {
-            1 => attempts = repeat("Too small!", attempts),
-            2 => attempts = repeat("Too big!", attempts),
-            0 => {
+        match guess.cmp(&secret_number) {
+            Ordering::Less => attempts = repeat("Too small!", attempts),
+            Ordering::Greater => attempts = repeat("Too big!", attempts),
+            Ordering::Equal => {
                 let attempt_str = ["first", "second", "third"];
                 if attempts <= 3 {
                     println!(
@@ -44,20 +44,12 @@ fn main() {
                 }
                 break;
             }
-            _ => unreachable!(),
         }
     }
 }
 fn repeat(out: &str, num: u8) -> u8 {
     println!("{}", out);
     return num + 1;
-}
-fn compare(guessed_num: &i8, secret_num: &i8) -> i8 {
-    match guessed_num.cmp(&secret_num) {
-        Ordering::Equal => return 0,
-        Ordering::Less => return 1,
-        Ordering::Greater => return 2,
-    }
 }
 fn get_user_num() -> String {
     print!("Guess a Number: ");
