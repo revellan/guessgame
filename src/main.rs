@@ -7,6 +7,10 @@ fn main() {
     let mut attempts: u8 = 1;
     let secret_number = rand::rng().random_range(1..=100);
     loop {
+        if attempts >= 255 {
+            println!("You lost!\n\nYou could have just guessed everything from 0..100 and it would have taken you less attempts ;)");
+            break;
+        }
         let mut guess: i8;
         loop {
             let guess_str = get_user_num();
