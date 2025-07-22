@@ -4,10 +4,10 @@ use std::io;
 use std::io::Write;
 
 fn main() {
-    let mut attempts: u32 = 1;
+    let mut attempts: u8 = 1;
     let secret_number = rand::rng().random_range(1..=100);
     loop {
-        let mut guess: i32;
+        let mut guess: i8;
         loop {
             let guess_str = get_user_num();
             match guess_str.trim().parse() {
@@ -40,11 +40,11 @@ fn main() {
         }
     }
 }
-fn repeat(out: &str, num: u32) -> u32 {
+fn repeat(out: &str, num: u8) -> u8 {
     println!("{}", out);
     return num + 1;
 }
-fn compare(guessed_num: &i32, secret_num: &i32) -> i32 {
+fn compare(guessed_num: &i8, secret_num: &i8) -> i8 {
     match guessed_num.cmp(&secret_num) {
         Ordering::Equal => return 0,
         Ordering::Less => return 1,
