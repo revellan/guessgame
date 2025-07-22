@@ -11,24 +11,32 @@ fn main() {
         loop {
             let guess_str = get_user_num();
             match guess_str.trim().parse() {
-                Ok(num) => {
-                    guess = num;
+                Ok(nm) => {
+                    guess = nm;
                     break;
                 }
                 Err(_) => continue,
             }
         }
-        let res = compare(&mut guess, &secret_number);
-        if res == 1 {
-            attempts = repeat("Too small!", attempts);
-        } else if res == 2 {
-            attempts = repeat("Too big!", attempts);
-        } else {
-            println!(
-                "Congragulations! You guessed correctly after {} attempts!",
-                attempts
-            );
-            break;
+        match compare(&mut guess, &secret_number) {
+            1 => attempts = repeat("Too small!", attempts),
+            2 => attempts = repeat("Too big!", attempts),
+            0 => {
+                let attempt_str = ["first", "second", "third"];
+                if attempts <= 3 {
+                    println!(
+                        "Congratulations! You guessed correctly on the {} attempt!",
+                        attempt_str[(attempts - 1) as usize]
+                    );
+                } else {
+                    println!(
+                        "Congratulations! You guessed correctly on the {}th attempt!",
+                        attempts
+                    );
+                }
+                break;
+            }
+            _ => unreachable!(),
         }
     }
 }
