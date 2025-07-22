@@ -12,10 +12,12 @@ fn main() {
             let guess_str = get_user_num();
             match guess_str.trim().parse() {
                 Ok(nm) => {
-                    guess = nm;
-                    break;
+                    if nm <= 100 && nm >= 0 {
+                        guess = nm;
+                        break;
+                    }
                 }
-                Err(_) => continue,
+                _ => continue,
             }
         }
         match compare(&mut guess, &secret_number) {
