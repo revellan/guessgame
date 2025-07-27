@@ -5,7 +5,7 @@ My first rust program from the rust book
 ## Installation:
 ```sh
 #Clone the git repo
-sudo git clone https://github.com/revellan/guessgame
+git clone https://github.com/revellan/guessgame
 cd guessgame
 
 #build from source
