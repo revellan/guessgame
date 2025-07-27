@@ -1,7 +1,5 @@
 use rand::Rng;
-use std::cmp::Ordering;
-use std::io;
-use std::io::Write;
+use std::{cmp::Ordering, io, io::Write};
 
 fn main() {
     let mut attempts: u8 = 1;
