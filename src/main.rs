@@ -13,14 +13,11 @@ fn main() {
         }
         let guess: i8 = loop {
             let guess_str = get_user_num();
-            match guess_str.trim().parse() {
-                Ok(nm) => {
-                    if nm <= 100 && nm >= 0 {
-                        break nm;
-                    }
+            if let Ok(nm) = guess_str.trim().parse() {
+                if nm <= 100 && nm >= 0 {
+                    break nm;
                 }
-                _ => continue,
-            }
+            };
         };
         match guess.cmp(&secret_number) {
             Ordering::Less => attempts = repeat("Too small!", attempts),
